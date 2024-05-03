@@ -1,0 +1,39 @@
+{
+  "name": "ts-lib-builder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "start": "tsc --project tsconfig.build.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "ts-lib-builder": "dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jesusgraterol/ts-lib-builder.git"
+  },
+  "keywords": [
+    "typescript",
+    "builder",
+    "library",
+    "compiler",
+    "distibution",
+    "package"
+  ],
+  "author": "Jesus Graterol",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jesusgraterol/ts-lib-builder/issues"
+  },
+  "homepage": "https://github.com/jesusgraterol/ts-lib-builder#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "typescript": "^5.4.5"
+  }
+}
