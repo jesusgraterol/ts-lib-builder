@@ -12,6 +12,11 @@ import {
  * @param args
  */
 const run = ({ tsconfigPath }: IParsedArgs) => {
+  // validate input
+  if (typeof tsconfigPath !== 'string' || !tsconfigPath.length) {
+    throw new Error('The path to the tsconfig.json file must be provided in order to be able to generate a build. Example: ts-lib-builder --tsconfigPath=tsconfig.build.json');
+  }
+
   // read the tsconfig.json file
   const tsconfig = readTypeScriptConfigFile(tsconfigPath);
 
