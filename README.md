@@ -52,7 +52,7 @@ $ npm start
 
 ## Acknowledgments
 
-- ...
+- [UglifyJS](https://github.com/mishoo/UglifyJS)
 
 
 
