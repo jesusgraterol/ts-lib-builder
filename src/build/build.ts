@@ -11,7 +11,7 @@ import {
  * Runs the Build Process that will be based on the project's tsconfig.json file.
  * @param args
  */
-const run = ({ tsconfigPath = './tsconfig.json' }: IParsedArgs) => {
+const run = ({ tsconfigPath }: IParsedArgs) => {
   // read the tsconfig.json file
   const tsconfig = readTypeScriptConfigFile(tsconfigPath);
 
