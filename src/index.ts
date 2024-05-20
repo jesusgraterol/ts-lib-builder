@@ -1,11 +1,11 @@
 #! /usr/bin/env node
 import process from 'node:process';
 import { parseArgs } from 'argv-utils';
-import { run } from './build/index.js';
+import { build } from './builder/index.js';
 
 (() => {
   try {
-    run(parseArgs(process.argv));
+    build(parseArgs(process.argv));
     process.exit(0);
   } catch (e) {
     console.error(e);

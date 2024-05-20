@@ -20,7 +20,7 @@ import { minify } from '../minifier/index.js';
  * - if no minifiable files are found
  * - if a file cannot be minified for any reason
  */
-const run = ({ tsconfig }: IParsedArgs) => {
+const build = ({ tsconfig }: IParsedArgs) => {
   // read the tsconfig.json file
   const config = readTypeScriptConfigFile(tsconfig);
 
@@ -38,5 +38,5 @@ const run = ({ tsconfig }: IParsedArgs) => {
  *                                         MODULE EXPORTS                                         *
  ************************************************************************************************ */
 export {
-  run,
+  build,
 };
