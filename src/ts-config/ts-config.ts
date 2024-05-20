@@ -26,7 +26,7 @@ const __parseContent = (content: string): ITypeScriptConfig => {
     return JSON.parse(__removeComments(content));
   } catch (e) {
     const msg: string = e instanceof Error ? e.message : JSON.stringify(e);
-    throw new Error(`The tsconfig.json's content could not be parsed: ${msg}`);
+    throw new Error(`The tsconfig's content could not be parsed: ${msg}`);
   }
 };
 
@@ -37,6 +37,8 @@ const __parseContent = (content: string): ITypeScriptConfig => {
  * @returns ITypeScriptConfig
  * @throws
  * - if it is unable to parse the JSON content
+ * - if the config object doesn't have the compilerOptions property
+ * - if the config object doesn't have the compilerOptions.outDir property
  */
 const __parseTypeScriptConfigFile = (content: string): ITypeScriptConfig => {
   if (typeof content !== 'string' || !content.length) {

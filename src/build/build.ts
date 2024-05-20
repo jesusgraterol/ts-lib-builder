@@ -1,10 +1,6 @@
 import { IParsedArgs } from 'argv-utils';
 import { readTypeScriptConfigFile } from '../ts-config/index.js';
-import {
-  cleanOutDir,
-  compileProject,
-  minifyProject,
-} from './build.utils.js';
+import { compile } from '../compiler/compiler.js';
 
 /**
  * Run Build
@@ -15,14 +11,11 @@ const run = ({ tsconfig }: IParsedArgs) => {
   // read the tsconfig.json file
   const config = readTypeScriptConfigFile(tsconfig);
 
-  // firstly, clean up the outDir
-  cleanOutDir(config.compilerOptions.outDir);
-
   // compile the project
-  compileProject(tsconfig);
+  compile(config.compilerOptions.outDir, tsconfig);
 
   // read the list of compiled files and uglify them
-  minifyProject(config.compilerOptions.outDir);
+  // minifyProject(config.compilerOptions.outDir);
 };
 
 
