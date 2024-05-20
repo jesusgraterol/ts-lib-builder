@@ -7,56 +7,6 @@ import {
 import { join } from 'node:path';
 import { execSync } from 'node:child_process';
 import { minify_sync } from 'terser';
-import { ITypeScriptConfig } from './types.js';
-
-/* ***********************************************************************************************
- *                                 TYPESCRIPT CONFIG FILE HELPERS                                *
- *********************************************************************************************** */
-
-/**
- * Removes all single and multi-line comments from a given string.
- * @param {*} s
- * @returns string
- */
-const __removeComments = (s: string): string => s.replace(
-  /\/\*[\s\S]*?\*\/|(?<=[^:])\/\/.*|^\/\/.*/g,
-  '',
-).trim();
-
-/**
- * Given the contents of the tsconfig.json file, it will remove all the comments and return a
- * parsed version.
- * @param {*} content
- * @returns ITypeScriptConfig
- */
-const __parseTypeScriptConfigFile = (content: string): ITypeScriptConfig => {
-  if (typeof content !== 'string' || !content.length) {
-    throw new Error('The tsconfig file content must be a valid string.');
-  }
-
-  // remove the comments and parse the config content. Also ensure the essential properties exist
-  const tsconfig: ITypeScriptConfig = JSON.parse(__removeComments(content));
-  if (!tsconfig || !tsconfig.compilerOptions || typeof tsconfig.compilerOptions !== 'object') {
-    throw new Error('The compilerOptions property is not present in the tsconfig object.');
-  }
-  if (typeof tsconfig.compilerOptions.outDir !== 'string' || !tsconfig.compilerOptions.outDir.length) {
-    throw new Error('The outDir property could not be extracted from the compilerOptions property.');
-  }
-  return tsconfig;
-};
-
-/**
- * Reads the tsconfig.json file, parses and returns its contents.
- * @returns ITypeScriptConfig
- */
-const readTypeScriptConfigFile = (path: string): ITypeScriptConfig => {
-  const tsconfigRaw = readFileSync(path, { encoding: 'utf8' });
-  return __parseTypeScriptConfigFile(tsconfigRaw);
-};
-
-
-
-
 
 /* ***********************************************************************************************
  *                                      COMPILATION HELPERS                                      *
@@ -91,7 +41,7 @@ const __listMinifiableFiles = (outDir: string): string[] => {
  * - if the file cannot be minified for any reason
  */
 const __minifyFile = (codePath: string): string => {
-  const minified = minify_sync(readFileSync(codePath, 'utf-8'), { compress: true });
+  const minified = minify_sync(readFileSync(codePath, 'utf-8'), { compress: true, mangle: true });
   if (
     !minified
     || typeof minified !== 'object'
@@ -122,9 +72,6 @@ const minifyProject = (outDir: string) => {
  *                                         MODULE EXPORTS                                        *
  *********************************************************************************************** */
 export {
-  // typescript config file helpers
-  readTypeScriptConfigFile,
-
   // compilation helpers
   cleanOutDir,
   compileProject,

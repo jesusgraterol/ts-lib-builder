@@ -1,6 +1,6 @@
 import { IParsedArgs } from 'argv-utils';
+import { readTypeScriptConfigFile } from '../ts-config/index.js';
 import {
-  readTypeScriptConfigFile,
   cleanOutDir,
   compileProject,
   minifyProject,
@@ -12,11 +12,6 @@ import {
  * @param args
  */
 const run = ({ tsconfig }: IParsedArgs) => {
-  // validate input
-  if (typeof tsconfig !== 'string' || !tsconfig.length) {
-    throw new Error('The path to the tsconfig.json file must be provided in order to be able to generate a build. Example: ts-lib-builder --tsconfig=tsconfig.build.json');
-  }
-
   // read the tsconfig.json file
   const config = readTypeScriptConfigFile(tsconfig);
 
