@@ -11,23 +11,23 @@ import {
  * Runs the Build Process that will be based on the project's tsconfig.json file.
  * @param args
  */
-const run = ({ tsconfigPath }: IParsedArgs) => {
+const run = ({ tsconfig }: IParsedArgs) => {
   // validate input
-  if (typeof tsconfigPath !== 'string' || !tsconfigPath.length) {
-    throw new Error('The path to the tsconfig.json file must be provided in order to be able to generate a build. Example: ts-lib-builder --tsconfigPath=tsconfig.build.json');
+  if (typeof tsconfig !== 'string' || !tsconfig.length) {
+    throw new Error('The path to the tsconfig.json file must be provided in order to be able to generate a build. Example: ts-lib-builder --tsconfig=tsconfig.build.json');
   }
 
   // read the tsconfig.json file
-  const tsconfig = readTypeScriptConfigFile(tsconfigPath);
+  const config = readTypeScriptConfigFile(tsconfig);
 
   // firstly, clean up the outDir
-  cleanOutDir(tsconfig.compilerOptions.outDir);
+  cleanOutDir(config.compilerOptions.outDir);
 
   // compile the project
-  compileProject(tsconfigPath);
+  compileProject(tsconfig);
 
   // read the list of compiled files and uglify them
-  minifyProject(tsconfig.compilerOptions.outDir);
+  minifyProject(config.compilerOptions.outDir);
 };
 
 
@@ -37,6 +37,5 @@ const run = ({ tsconfigPath }: IParsedArgs) => {
  * Module Exports
  */
 export {
-  // eslint-disable-next-line import/prefer-default-export
   run,
 };

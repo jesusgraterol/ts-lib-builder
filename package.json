@@ -1,6 +1,6 @@
 {
   "name": "ts-lib-builder",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -45,6 +45,6 @@
   },
   "dependencies": {
     "argv-utils": "^1.0.1",
-    "uglify-js": "^3.17.4"
+    "terser": "^5.31.0"
   }
 }

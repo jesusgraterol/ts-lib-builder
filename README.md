@@ -14,7 +14,7 @@ Include it in your `build` script:
 {
   ...
   "scripts": {
-    "start": "ts-lib-builder --tsconfigPath=tsconfig.build.json",
+    "start": "ts-lib-builder --tsconfig=tsconfig.build.json",
     ...
   }
   ...
@@ -34,7 +34,7 @@ $ npm start
 
 ## Built With
 
-- JavaScript / TypeScript
+- TypeScript
 
 
 
@@ -52,7 +52,7 @@ $ npm start
 
 ## Acknowledgments
 
-- [UglifyJS](https://github.com/mishoo/UglifyJS)
+- [Terser](https://github.com/terser/terser)
 
 
 

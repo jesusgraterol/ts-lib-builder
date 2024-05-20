@@ -4,8 +4,9 @@ import {
   readdirSync,
   writeFileSync,
 } from 'node:fs';
+import { join } from 'node:path';
 import { execSync } from 'node:child_process';
-import UglifyJS from 'uglify-js';
+import { minify_sync } from 'terser';
 import { ITypeScriptConfig } from './types.js';
 
 /* ***********************************************************************************************
@@ -83,16 +84,33 @@ const __listMinifiableFiles = (outDir: string): string[] => {
 };
 
 /**
+ * Minifed the .js file located at the given path.
+ * @param codePath
+ * @returns string
+ * @throws
+ * - if the file cannot be minified for any reason
+ */
+const __minifyFile = (codePath: string): string => {
+  const minified = minify_sync(readFileSync(codePath, 'utf-8'), { compress: true });
+  if (
+    !minified
+    || typeof minified !== 'object'
+    || typeof minified.code !== 'string'
+    || !minified.code.length
+  ) {
+    throw new Error(`The file '${codePath}' could not be minified.`);
+  }
+  return minified.code;
+};
+
+/**
  * Uglifies every compiled file (.js) from the outDir directory.
  * @param {*} outDir
  */
 const minifyProject = (outDir: string) => {
   __listMinifiableFiles(outDir).forEach((filePath) => {
-    writeFileSync(
-      `${outDir}/${filePath}`,
-      UglifyJS.minify(readFileSync(`${outDir}/${filePath}`, 'utf8')).code,
-      'utf8',
-    );
+    const codePath: string = join(outDir, filePath);
+    writeFileSync(codePath, __minifyFile(codePath), 'utf8');
   });
 };
 
