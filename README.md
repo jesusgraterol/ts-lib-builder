@@ -6,7 +6,7 @@ The `ts-lib-builder` package is designed to simplify the build process for your 
 
 Install the package:
 ```bash
-$ npm install -D ts-lib-builder
+npm install -D ts-lib-builder
 ```
 
 Include it in your `build` script:
@@ -24,7 +24,7 @@ Include it in your `build` script:
 
 Generate an optimized production-grade build:
 ```bash
-$ npm start
+npm start
 ```
 
 
@@ -74,17 +74,17 @@ $ npm start
 
 Install dependencies:
 ```bash
-$ npm install
+npm install
 ```
 
 
 Build the library:
 ```bash
-$ npm start
+npm start
 ```
 
 
 Publish to `npm`:
 ```bash
-$ npm publish
+npm publish
 ```
