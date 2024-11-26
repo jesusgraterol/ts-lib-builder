@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { ITypeScriptConfig } from '../shared/types.js';
+import { ITypeScriptConfig } from '@/shared/types.js';
 
 /* ************************************************************************************************
  *                                         IMPLEMENTATION                                         *
