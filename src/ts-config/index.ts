@@ -1,6 +1,6 @@
-import { readFileSync } from "node:fs";
 import JSON5 from "json5";
 import { ITypeScriptConfig } from "../shared/types.js";
+import { readFile } from "../fs/index.js";
 
 /* ************************************************************************************************
  *                                         IMPLEMENTATION                                         *
@@ -75,7 +75,7 @@ const readTypeScriptConfigFile = (path: string): ITypeScriptConfig => {
       "The path to the tsconfig.json file must be provided in order to be able to generate a build. Example: ts-lib-builder --tsconfig=tsconfig.build.json",
     );
   }
-  return __parseTypeScriptConfigFile(readFileSync(path, { encoding: "utf8" }));
+  return __parseTypeScriptConfigFile(readFile(path));
 };
 
 /* ************************************************************************************************

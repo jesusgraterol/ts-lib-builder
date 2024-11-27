@@ -1,6 +1,6 @@
-import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { minify_sync } from "terser";
+import { readDirectory, readFile, writeFile } from "../fs/index.js";
 
 /* ************************************************************************************************
  *                                         IMPLEMENTATION                                         *
@@ -14,10 +14,7 @@ import { minify_sync } from "terser";
  * - if no minifiable files are found
  */
 const __listMinifiableFiles = (outDir: string): string[] => {
-  const files = readdirSync(outDir, {
-    recursive: true,
-    encoding: "utf-8",
-  }).filter((file) => /.js$/.test(file));
+  const files = readDirectory(outDir).filter((file) => /.js$/.test(file));
   if (!files.length) {
     throw new Error(
       "The project could not be minified because no .js files were found in the output.",
@@ -34,7 +31,7 @@ const __listMinifiableFiles = (outDir: string): string[] => {
  * - if the file cannot be minified for any reason
  */
 const __minifyFile = (codePath: string): string => {
-  const minified = minify_sync(readFileSync(codePath, "utf-8"), {
+  const minified = minify_sync(readFile(codePath), {
     compress: true,
     mangle: true,
   });
@@ -59,7 +56,7 @@ const __minifyFile = (codePath: string): string => {
 const minify = (outDir: string) => {
   __listMinifiableFiles(outDir).forEach((filePath) => {
     const codePath: string = join(outDir, filePath);
-    writeFileSync(codePath, __minifyFile(codePath), "utf8");
+    writeFile(codePath, __minifyFile(codePath))
   });
 };
 
