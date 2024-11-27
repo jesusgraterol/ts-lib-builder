@@ -1,10 +1,6 @@
-import {
-  readFileSync,
-  readdirSync,
-  writeFileSync,
-} from 'node:fs';
-import { join } from 'node:path';
-import { minify_sync } from 'terser';
+import { readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { minify_sync } from "terser";
 
 /* ************************************************************************************************
  *                                         IMPLEMENTATION                                         *
@@ -18,12 +14,14 @@ import { minify_sync } from 'terser';
  * - if no minifiable files are found
  */
 const __listMinifiableFiles = (outDir: string): string[] => {
-  const files = readdirSync(
-    outDir,
-    { recursive: true, encoding: 'utf-8' },
-  ).filter((file) => /.js$/.test(file));
+  const files = readdirSync(outDir, {
+    recursive: true,
+    encoding: "utf-8",
+  }).filter((file) => /.js$/.test(file));
   if (!files.length) {
-    throw new Error('The project could not be minified because no .js files were found in the output.');
+    throw new Error(
+      "The project could not be minified because no .js files were found in the output.",
+    );
   }
   return files;
 };
@@ -36,12 +34,15 @@ const __listMinifiableFiles = (outDir: string): string[] => {
  * - if the file cannot be minified for any reason
  */
 const __minifyFile = (codePath: string): string => {
-  const minified = minify_sync(readFileSync(codePath, 'utf-8'), { compress: true, mangle: true });
+  const minified = minify_sync(readFileSync(codePath, "utf-8"), {
+    compress: true,
+    mangle: true,
+  });
   if (
-    !minified
-    || typeof minified !== 'object'
-    || typeof minified.code !== 'string'
-    || !minified.code.length
+    !minified ||
+    typeof minified !== "object" ||
+    typeof minified.code !== "string" ||
+    !minified.code.length
   ) {
     throw new Error(`The file '${codePath}' could not be minified.`);
   }
@@ -58,17 +59,11 @@ const __minifyFile = (codePath: string): string => {
 const minify = (outDir: string) => {
   __listMinifiableFiles(outDir).forEach((filePath) => {
     const codePath: string = join(outDir, filePath);
-    writeFileSync(codePath, __minifyFile(codePath), 'utf8');
+    writeFileSync(codePath, __minifyFile(codePath), "utf8");
   });
 };
-
-
-
-
 
 /* ***********************************************************************************************
  *                                         MODULE EXPORTS                                        *
  *********************************************************************************************** */
-export {
-  minify,
-};
+export { minify };

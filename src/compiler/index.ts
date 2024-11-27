@@ -1,5 +1,5 @@
-import { rmSync } from 'node:fs';
-import { execSync } from 'node:child_process';
+import { rmSync } from "node:fs";
+import { execSync } from "node:child_process";
 
 /* ************************************************************************************************
  *                                         IMPLEMENTATION                                         *
@@ -8,7 +8,8 @@ import { execSync } from 'node:child_process';
 /**
  * Deletes the output directory if exists.
  */
-const __cleanOutDir = (outDir: string): void => rmSync(outDir, { recursive: true, force: true });
+const __cleanOutDir = (outDir: string): void =>
+  rmSync(outDir, { recursive: true, force: true });
 
 /**
  * Deletes the outDir to guarantee a fresh distribution and compiles the project based on the
@@ -22,13 +23,7 @@ const compile = (outDir: string, tsconfigPath: string): void => {
   execSync(`tsc --project "${tsconfigPath}"`);
 };
 
-
-
-
-
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *
  ************************************************************************************************ */
-export {
-  compile,
-};
+export { compile };

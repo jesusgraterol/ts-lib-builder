@@ -1,7 +1,7 @@
-import { IParsedArgs } from 'argv-utils';
-import { readTypeScriptConfigFile } from '@/ts-config/index.js';
-import { compile } from '@/compiler/index.js';
-import { minify } from '@/minifier/index.js';
+import { IParsedArgs } from "argv-utils";
+import { readTypeScriptConfigFile } from "@/ts-config/index.js";
+import { compile } from "@/compiler/index.js";
+import { minify } from "@/minifier/index.js";
 
 /* ************************************************************************************************
  *                                         IMPLEMENTATION                                         *
@@ -26,12 +26,7 @@ const build = ({ tsconfig }: IParsedArgs) => {
   minify(config.compilerOptions.outDir);
 };
 
-
-
-
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *
  ************************************************************************************************ */
-export {
-  build,
-};
+export { build };

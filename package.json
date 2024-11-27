@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "argv-utils": "^1.0.1",
+    "json5": "^2.2.3",
     "terser": "^5.31.0"
   }
 }
