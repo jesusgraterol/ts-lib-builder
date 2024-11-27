@@ -1,7 +1,7 @@
 import { IParsedArgs } from "argv-utils";
-import { readTypeScriptConfigFile } from "@/ts-config/index.js";
-import { compile } from "@/compiler/index.js";
-import { minify } from "@/minifier/index.js";
+import { readTypeScriptConfigFile } from "../ts-config/index.js";
+import { compile } from "../compiler/index.js";
+import { minify } from "../minifier/index.js";
 
 /* ************************************************************************************************
  *                                         IMPLEMENTATION                                         *
