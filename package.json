@@ -1,6 +1,6 @@
 {
   "name": "ts-lib-builder",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "The ts-lib-builder package is designed to simplify the build process for your TypeScript libraries and APIs. It combines the essential steps of compilation and minification into a single, efficient workflow.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
