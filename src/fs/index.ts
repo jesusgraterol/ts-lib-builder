@@ -1,4 +1,4 @@
-import { rmSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { rmSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 
 /* ************************************************************************************************
  *                                         IMPLEMENTATION                                         *
@@ -19,7 +19,7 @@ const deleteDirectory = (dirPath: string): void =>
 const readDirectory = (dirPath: string): string[] =>
   readdirSync(dirPath, {
     recursive: true,
-    encoding: "utf8",
+    encoding: 'utf8',
   });
 
 /**
@@ -27,8 +27,7 @@ const readDirectory = (dirPath: string): string[] =>
  * @param filePath
  * @returns string
  */
-const readFile = (filePath: string): string =>
-  readFileSync(filePath, { encoding: "utf8" });
+const readFile = (filePath: string): string => readFileSync(filePath, { encoding: 'utf8' });
 
 /**
  * Creates or updates a file at a filePath.
@@ -36,7 +35,7 @@ const readFile = (filePath: string): string =>
  * @param content
  */
 const writeFile = (filePath: string, content: string): void =>
-  writeFileSync(filePath, content, "utf8");
+  writeFileSync(filePath, content, 'utf8');
 
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *

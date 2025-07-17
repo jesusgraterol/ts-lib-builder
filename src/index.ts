@@ -1,7 +1,7 @@
 #! /usr/bin/env node
-import process from "node:process";
-import { parseArgs } from "argv-utils";
-import { build } from "./builder/index.js";
+import process from 'node:process';
+import { parseArgs } from 'argv-utils';
+import { build } from './builder/index.js';
 
 (() => {
   try {

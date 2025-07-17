@@ -1,6 +1,6 @@
-import JSON5 from "json5";
-import { ITypeScriptConfig } from "../shared/types.js";
-import { readFile } from "../fs/index.js";
+import JSON5 from 'json5';
+import { ITypeScriptConfig } from '../shared/types.js';
+import { readFile } from '../fs/index.js';
 
 /* ************************************************************************************************
  *                                         IMPLEMENTATION                                         *
@@ -33,27 +33,21 @@ const __parseContent = (content: string): ITypeScriptConfig => {
  * - if the config object doesn't have the compilerOptions.outDir property
  */
 const __parseTypeScriptConfigFile = (content: string): ITypeScriptConfig => {
-  if (typeof content !== "string" || !content.length) {
-    throw new Error("The tsconfig file content must be a valid string.");
+  if (typeof content !== 'string' || !content.length) {
+    throw new Error('The tsconfig file content must be a valid string.');
   }
 
   // parse the content and ensure the required properties exist
   const tsconfig: ITypeScriptConfig = __parseContent(content);
-  if (
-    !tsconfig ||
-    !tsconfig.compilerOptions ||
-    typeof tsconfig.compilerOptions !== "object"
-  ) {
-    throw new Error(
-      "The compilerOptions property is not present in the tsconfig object.",
-    );
+  if (!tsconfig || !tsconfig.compilerOptions || typeof tsconfig.compilerOptions !== 'object') {
+    throw new Error('The compilerOptions property is not present in the tsconfig object.');
   }
   if (
-    typeof tsconfig.compilerOptions.outDir !== "string" ||
+    typeof tsconfig.compilerOptions.outDir !== 'string' ||
     !tsconfig.compilerOptions.outDir.length
   ) {
     throw new Error(
-      "The outDir property could not be extracted from the compilerOptions property.",
+      'The outDir property could not be extracted from the compilerOptions property.',
     );
   }
   return tsconfig;
@@ -70,9 +64,9 @@ const __parseTypeScriptConfigFile = (content: string): ITypeScriptConfig => {
  * - if the outDir property is not present in the config object
  */
 const readTypeScriptConfigFile = (path: string): ITypeScriptConfig => {
-  if (typeof path !== "string" || !path.length) {
+  if (typeof path !== 'string' || !path.length) {
     throw new Error(
-      "The path to the tsconfig.json file must be provided in order to be able to generate a build. Example: ts-lib-builder --tsconfig=tsconfig.build.json",
+      'The path to the tsconfig.json file must be provided in order to be able to generate a build. Example: ts-lib-builder --tsconfig=tsconfig.build.json',
     );
   }
   return __parseTypeScriptConfigFile(readFile(path));

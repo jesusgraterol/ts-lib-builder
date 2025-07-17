@@ -1,6 +1,6 @@
-import { join } from "node:path";
-import { minify_sync } from "terser";
-import { readDirectory, readFile, writeFile } from "../fs/index.js";
+import { join } from 'node:path';
+import { minify_sync } from 'terser';
+import { readDirectory, readFile, writeFile } from '../fs/index.js';
 
 /* ************************************************************************************************
  *                                         IMPLEMENTATION                                         *
@@ -17,7 +17,7 @@ const __listMinifiableFiles = (outDir: string): string[] => {
   const files = readDirectory(outDir).filter((file) => /.js$/.test(file));
   if (!files.length) {
     throw new Error(
-      "The project could not be minified because no .js files were found in the output.",
+      'The project could not be minified because no .js files were found in the output.',
     );
   }
   return files;
@@ -37,8 +37,8 @@ const __minifyFile = (codePath: string): string => {
   });
   if (
     !minified ||
-    typeof minified !== "object" ||
-    typeof minified.code !== "string" ||
+    typeof minified !== 'object' ||
+    typeof minified.code !== 'string' ||
     !minified.code.length
   ) {
     throw new Error(`The file '${codePath}' could not be minified.`);
@@ -56,7 +56,7 @@ const __minifyFile = (codePath: string): string => {
 const minify = (outDir: string) => {
   __listMinifiableFiles(outDir).forEach((filePath) => {
     const codePath: string = join(outDir, filePath);
-    writeFile(codePath, __minifyFile(codePath))
+    writeFile(codePath, __minifyFile(codePath));
   });
 };
 
