@@ -1,5 +1,5 @@
-import { execSync } from "node:child_process";
-import { deleteDirectory } from "../fs/index.js";
+import { execSync } from 'node:child_process';
+import { deleteDirectory } from '../fs/index.js';
 
 /* ************************************************************************************************
  *                                         IMPLEMENTATION                                         *

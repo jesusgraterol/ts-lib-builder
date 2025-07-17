@@ -1,12 +1,12 @@
 {
   "name": "ts-lib-builder",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "The ts-lib-builder package is designed to simplify the build process for your TypeScript libraries and APIs. It combines the essential steps of compilation and minification into a single, efficient workflow.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "start": "rm -r -f dist && tsc --project tsconfig.build.json",
+    "build": "rm -r -f dist && tsc --project tsconfig.build.json",
     "test": "echo \"Error: tests are executed with  npm run test:(integration|unit)\" && exit 1",
     "test:integration": "jest --config=jest.test-integration.config.json --no-cache",
     "test:unit": "jest --config=jest.test-unit.config.json --no-cache"
@@ -33,21 +33,21 @@
   },
   "homepage": "https://github.com/jesusgraterol/ts-lib-builder#readme",
   "devDependencies": {
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.12.8",
-    "@types/uglify-js": "^3.17.5",
-    "@typescript-eslint/eslint-plugin": "^7.8.0",
-    "@typescript-eslint/parser": "^7.8.0",
-    "eslint-config-airbnb-typescript": "^18.0.0",
-    "eslint-config-prettier": "^9.1.0",
-    "jest": "^29.7.0",
+    "@types/jest": "29.5.12",
+    "@types/node": "20.12.8",
+    "@types/uglify-js": "3.17.5",
+    "@typescript-eslint/eslint-plugin": "7.8.0",
+    "@typescript-eslint/parser": "7.8.0",
+    "eslint-config-airbnb-typescript": "18.0.0",
+    "eslint-config-prettier": "9.1.0",
+    "jest": "29.7.0",
     "prettier": "3.4.1",
-    "ts-jest": "^29.1.2",
-    "typescript": "^5.4.5"
+    "ts-jest": "29.1.2",
+    "typescript": "5.4.5"
   },
   "dependencies": {
-    "argv-utils": "^1.0.1",
-    "json5": "^2.2.3",
-    "terser": "^5.31.0"
+    "argv-utils": "1.0.4",
+    "json5": "2.2.3",
+    "terser": "5.31.0"
   }
 }
